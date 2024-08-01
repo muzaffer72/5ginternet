@@ -1113,48 +1113,7 @@ exit 0' >> /etc/rc.local
     sudo systemctl enable firenet
     sudo systemctl start firenet.service
 
-/bin/cat <<"EOM" >/var/www/html/index.html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Tk@Network International</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.min.css" media="screen">
-<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-<style>
-    body {
-     font-family: "Press Start 2P", cursive;    
-    }
-    .fn-color {
-        color: #ff00ff;
-        background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        -webkit-animation: hue 5s infinite linear;
-    }
-    @-webkit-keyframes hue {
-      from {
-        -webkit-filter: hue-rotate(0deg);
-      }
-      to {
-        -webkit-filter: hue-rotate(-360deg);
-      }
-    }
-</style>
-</head>
-<body>
-<div class="container" style="padding-top: 50px">
-<div class="jumbotron">
-<h1 class="display-3 text-center fn-color">Tk@Network</h1>
-<h4 class="text-center fn-color">Follow Us</h4>
-<p class="text-center">https://web.facebook.com/ericson.hernandez1</p>
-</div>
-</div>
-</body>
-</html>
-EOM
+
 
 sed -i 's/Listen 80/Listen 81/g' /etc/apache2/ports.conf
 service apache2 restart
@@ -1206,6 +1165,54 @@ EOF
 echo -e "* *\t* * *\troot\tsudo bash /home/authentication.sh" >> "/etc/cron.d/account"
 
  /usr/sbin/useradd -p $(openssl passwd -1 12345) -M bulaan
+
+cat <<EOF152> /var/www/html/index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tk</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.min.css" media="screen">
+<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+<style>
+    body {
+     font-family: "Press Start 2P", cursive;    
+    }
+    .fn-color {
+        color: #ff00ff;
+        background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-animation: hue 5s infinite linear;
+    }
+
+    @-webkit-keyframes hue {
+      from {
+        -webkit-filter: hue-rotate(0deg);
+      }
+      to {
+        -webkit-filter: hue-rotate(-360deg);
+      }
+    }
+</style>
+</head>
+<body>
+<div class="container" style="padding-top: 50px">
+<div class="jumbotron">
+<h1 class="display-3 text-center fn-color">TK</h1>
+
+<p class="text-center">HOST DNS: $(cat /root/subdomain)</p>
+<p class="text-center">NS RECORD: $(cat /root/ns.txt)</p>
+
+</div>
+</div>
+</body>
+</html>
+
+EOF152
 
 history -c
 cd /root || exit
