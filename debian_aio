@@ -880,6 +880,10 @@ systemctl restart openvpn@server2.service
 systemctl start hysteria-server.service
 systemctl enable hysteria-server.service
 screen -dmS socks python /etc/socks.py 80
+sudo kill $( sudo lsof -i:5300 -t )
+nsname="$(cat /root/ns.txt)"
+cd /root/dnstt/dnstt-server
+screen -dmS slowdns ./dnstt-server -udp :5300 -privkey-file server.key $nsname 127.0.0.1:442
 screen -dmS proxy python /usr/local/sbin/websocket.py 8070
 ps x | grep 'udpvpn' | grep -v 'grep' || screen -dmS udpvpn /usr/bin/badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 10000 --max-connections-for-client 10 --client-socket-sndbuf 10000
 screen -dmS webinfo php -S 0.0.0.0:5623 -t /root/.web/
