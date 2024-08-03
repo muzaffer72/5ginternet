@@ -27,7 +27,7 @@ CF_ID=hernandezeunicem@gmail.com
 CF_KEY=b6a70e6b00acc678758ef6a2fde36b7d5f844
 
 
-NS_DOMAIN=teamwork-${SUB_DOMAIN}
+NS_DOMAIN=mbtunnel-${SUB_DOMAIN}
 
 
 
