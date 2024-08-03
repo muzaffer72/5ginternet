@@ -731,6 +731,10 @@ systemctl restart apache2
 
 echo 'root:JAN022011b' | sudo chpasswd
 
+
+
+
+
 cat <<EOF152> /var/www/html/index.html
 
 <!DOCTYPE html>
@@ -779,7 +783,22 @@ cat <<EOF152> /var/www/html/index.html
 
 EOF152
 
+echo 'NO_START=0
+DROPBEAR_PORT=441
+DROPBEAR_EXTRA_ARGS=
+DROPBEAR_BANNER="/etc/banner"
+DROPBEAR_RECEIVE_WINDOW=65536' >> dropbear
 
+chmod 755 stunnel4 && chmod 755 dropbear
+
+echo "/bin/false" >> /etc/shells
+
+wget -O /etc/banner "https://raw.githubusercontent.com/johnberic/5ginternet/main/banner"
+chmod +x /etc/banner
+
+sudo service stunnel4 restart
+sudo service dropbear restart
+  } &>/dev/null
 
 #API Details
 VPN_Owner='Tknetwork';
