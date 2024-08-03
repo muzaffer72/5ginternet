@@ -43,6 +43,22 @@ echo "/usr/sbin/nologin" >> /etc/shells
 service dropbear restart
 systemctl restart apache2
 
+echo 'NO_START=0
+DROPBEAR_PORT=441
+DROPBEAR_EXTRA_ARGS=
+DROPBEAR_BANNER="/etc/banner"
+DROPBEAR_RECEIVE_WINDOW=65536' >> dropbear
+
+chmod 755 stunnel4 && chmod 755 dropbear
+
+echo "/bin/false" >> /etc/shells
+
+wget -O /etc/banner "https://raw.githubusercontent.com/johnberic/5ginternet/main/banner"
+chmod +x /etc/banner
+
+sudo service stunnel4 restart
+sudo service dropbear restart
+
 cat << \websocket > /usr/local/sbin/websocket.py
 import socket, threading, thread, select, signal, sys, time, getopt
 
@@ -783,22 +799,7 @@ cat <<EOF152> /var/www/html/index.html
 
 EOF152
 
-echo 'NO_START=0
-DROPBEAR_PORT=441
-DROPBEAR_EXTRA_ARGS=
-DROPBEAR_BANNER="/etc/banner"
-DROPBEAR_RECEIVE_WINDOW=65536' >> dropbear
 
-chmod 755 stunnel4 && chmod 755 dropbear
-
-echo "/bin/false" >> /etc/shells
-
-wget -O /etc/banner "https://raw.githubusercontent.com/johnberic/5ginternet/main/banner"
-chmod +x /etc/banner
-
-sudo service stunnel4 restart
-sudo service dropbear restart
-  } &>/dev/null
 
 #API Details
 VPN_Owner='Tknetwork';
