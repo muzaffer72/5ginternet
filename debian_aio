@@ -17,10 +17,10 @@ touch /etc/openvpn/server2.conf
 
 cat <<\EOM >/etc/openvpn/login/config.sh
 #!/bin/bash
-HOST='webhosting2031.is.cc'
-USER='mbtunnel_5gin'
-PASS='JAN022011b'
-DB='mbtunnel_5gin'
+HOST='109.71.252.34'
+USER='onvao_vpnkurulum'
+PASS='**********'
+DB='onvao_vpnkurulum'
 EOM
 
 
@@ -30,10 +30,10 @@ EOM
 #!/bin/bash
 username=`head -n1 $1 | tail -1`   
 password=`head -n2 $1 | tail -1`
-HOST='webhosting2031.is.cc'
-USER='mbtunnel_5gin'
-PASS='JAN022011b'
-DB='mbtunnel_5gin'
+HOST='109.71.252.34'
+USER='onvao_vpnkurulum'
+PASS='**********'
+DB='onvao_vpnkurulum'
 Query="SELECT user_name FROM users WHERE user_name='$username' AND user_encryptedPass=md5('$password') AND is_freeze='0' AND user_duration > 0"
 user_name=`mysql -u $USER -p$PASS -D $DB -h $HOST -sN -e "$Query"`
 [ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
@@ -490,7 +490,7 @@ apt-get install netcat lsof php php-mysqli php-mysql php-gd php-mbstring python 
 cat << \socksopenvpn > /usr/local/sbin/proxy.py
 #!/usr/bin/env python3
 # encoding: utf-8
-# SocksProxy By: Tknetwork
+# SocksProxy By: onvao.net
 import socket, threading, thread, select, signal, sys, time, getopt
 # CONFIG
 LISTENING_ADDR = '0.0.0.0'
@@ -761,7 +761,7 @@ keysize 0
 setenv CLIENT_CERT 0
 reneg-sec 0
 verb 3
-# OVPN_ACCESS_SERVER_PROFILE=Tknetwork
+# OVPN_ACCESS_SERVER_PROFILE=onvao.et
 <ca>
 -----BEGIN CERTIFICATE-----
 MIIExDCCA6ygAwIBAgIJAKyvksf/QCcwMA0GCSqGSIb3DQEBCwUAMIGcMQswCQYD
@@ -796,7 +796,7 @@ EOM
 
 
 
-wget -O hysteriav1.sh "admin-boyes.com/tkapi/hysteriav1.sh"
+wget -O hysteriav1.sh "muzaffersanli.com/aiovpn/hysteriav1.sh"
 chmod +x ~/hysteriav1.sh && sed -i -e 's/\r$//' ~/hysteriav1.sh && ./hysteriav1.sh
 
 rm -f /etc/hysteria/config.json
@@ -849,7 +849,7 @@ chmod 755 /etc/hysteria/.auth.sh
 sysctl -w net.core.rmem_max=16777216
 sysctl -w net.core.wmem_max=16777216
 
-wget -O /usr/bin/badvpn-udpgw "https://apk.admin-boyes.com/setup/badvpn-udpgw64"
+wget -O /usr/bin/badvpn-udpgw "https://muzaffersanli.com/aiovpn/badvpn-udpgw64"
 chmod +x /usr/bin/badvpn-udpgw
 ps x | grep 'udpvpn' | grep -v 'grep' || screen -dmS udpvpn /usr/bin/badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 10000 --max-connections-for-client 10 --client-socket-sndbuf 10000
 
@@ -864,11 +864,11 @@ Certificate:
         Version: 3 (0x2)
         Serial Number: 1 (0x1)
         Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C=PH, ST=MA, L=Antipolo City, O=TKNetwork, OU=TKNerwork, CN=TKNetwork CA/name=TKNetwork/emailAddress=ericlaylay@gmail.com
+        Issuer: C=PH, ST=MA, L=Antipolo City, O=Onvaonet, OU=onvaonet, CN=onvaonet CA/name=onvaonet/emailAddress=mail@onvaonet
         Validity
             Not Before: Sep 20 03:54:08 2022 GMT
             Not After : Sep 17 03:54:08 2032 GMT
-        Subject: C=PH, ST=CA, L=Antipolo City, O=TKNetwork, OU=TKNerwork, CN=TKNetwork/name=TKNetwork/emailAddress=ericlaylay@gmail.com
+        Subject: C=PH, ST=CA, L=Antipolo City, O=onvaonet, OU=onvaonet, CN=onvaonet/name=onvaonet/emailAddress=mail@onvaonet
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 RSA Public-Key: (2048 bit)
@@ -903,7 +903,7 @@ Certificate:
                 28:1D:A2:5E:3A:50:2C:3A:E0:B0:54:57:D6:11:02:FC:D6:1F:FF:35
             X509v3 Authority Key Identifier: 
                 keyid:DB:6B:D9:7E:CC:36:11:1E:67:E8:45:B0:07:26:88:17:F6:8B:F3:AB
-                DirName:/C=PH/ST=MA/L=Antipolo City/O=TKNetwork/OU=TKNerwork/CN=TKNetwork CA/name=TKNetwork/emailAddress=ericlaylay@gmail.com
+                DirName:/C=PH/ST=MA/L=Antipolo City/O=onvaonet/OU=onvaonet/CN=onvaonet CA/name=onvaonet/emailAddress=mail@onvaonet
                 serial:52:67:60:3D:A2:29:17:35:5F:CA:B9:4A:8E:E2:80:74:F3:CE:64:EB
 
             X509v3 Extended Key Usage: 
@@ -995,10 +995,10 @@ EOF
 
 cat <<\EOM >/etc/hysteria/config.sh
 #!/bin/bash
-HOST='webhosting2031.is.cc'
-USER='mbtunnel_5gin'
-PASS='JAN022011b'
-DB='mbtunnel_5gin'
+HOST='109.71.252.34'
+USER='onvao_vpnkurulum'
+PASS='**********'
+DB='onvao_vpnkurulum'
 EOM
 
 
@@ -1016,8 +1016,8 @@ chmod 755 /etc/hysteria/server.key
 
     
     echo "[Unit]
-Description=firenet service
-Documentation=http://firenetvpn.com
+Description=onvao service
+Documentation=http://onvao.net
 
 [Service]
 Type=oneshot
@@ -1050,7 +1050,7 @@ exit 0' >> /etc/rc.local
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Tk@Network International</title>
+<title>onvao.net </title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.min.css" media="screen">
@@ -1079,9 +1079,9 @@ exit 0' >> /etc/rc.local
 <body>
 <div class="container" style="padding-top: 50px">
 <div class="jumbotron">
-<h1 class="display-3 text-center fn-color">Tk@Network</h1>
+<h1 class="display-3 text-center fn-color">Onvao.net</h1>
 <h4 class="text-center fn-color">Follow Us</h4>
-<p class="text-center">https://web.facebook.com/ericson.hernandez1</p>
+<p class="text-center">https://onvao.net</p>
 </div>
 </div>
 </body>
